@@ -13,6 +13,7 @@ const Navbar=({userInfo, onSearchNote ,handleClearSearch})=>{
     const onLogout=()=>{
         localStorage.clear();
         navigate("/login");
+
     }
     const handleSearch=()=>{
         if(seachQuery){
@@ -37,6 +38,7 @@ const Navbar=({userInfo, onSearchNote ,handleClearSearch})=>{
                 handleSearch={handleSearch}
                 onClearSearch={onClearSearch}
                 />
+                
                 <ProfileInfo userInfo={userInfo} onLogout={onLogout}></ProfileInfo>
             </div>
         </>

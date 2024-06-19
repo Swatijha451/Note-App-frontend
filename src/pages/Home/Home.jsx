@@ -123,7 +123,7 @@ const Home=()=>{
     }
 
     const updateIsPinned = async (noteData)=>{
-        const noteId=noteData._id
+        const noteId=noteData._id;
 
         try{
             const response=await axiosInstance.put("/is-pinned/"+noteId,
