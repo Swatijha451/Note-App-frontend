@@ -74,7 +74,7 @@ const Home=()=>{
     //get all notes
     const getAllNotes=async()=>{
         try{
-            const response= await axiosInstance.get("/get-all-notes/");
+            const response= await axiosInstance.get("/get-all-notes");
         if(response.data && response.data.notes){
             setAllNotes(response.data.notes);
         }
@@ -88,16 +88,20 @@ const Home=()=>{
         try{
         const response=await axiosInstance.delete("/delete-note/"+noteId);
 
+
         if(response.data && !response.data.error){
             showToastMessage("Note Deleted Successfully!",'delete');
             getAllNotes();
         }
+        
         }
+
         catch(error){
             if(error.response && error.response.data && error.response.data.message){
                 console.log("An unexpected erro occurred. Please try again later");
             }
         }
+        
      } 
      
      //search notes
@@ -143,8 +147,8 @@ const Home=()=>{
     
 
     useEffect(()=>{
-        getAllNotes();
         getUserInfo();
+        getAllNotes();
         return ()=>{};
     },[]);
 
@@ -168,7 +172,7 @@ return(
                      onPinNote={()=>updateIsPinned(item)}
                     /> 
                 ))}
-        </div> : <EmptyCard message={`Start creating your first note! click the ADD button to jot down your reminders, thoughts, ideas and experiences in one place. Let's get started!`}/>}
+        </div> : <EmptyCard isSearch={isSearch} message={ isSearch ? `Oops! No notes found matching your search result.`:`Start creating your first note! click the ADD button to jot down your reminders, thoughts, ideas and experiences in one place. Let's get started!`}/>}
         </div>
 
         <button className="w-16 h-16 flex items-center justify-center rounded-2xl  border-[5px] bg-newColor hover:bg-blue-600 absolute right-10 bottom-10 " 

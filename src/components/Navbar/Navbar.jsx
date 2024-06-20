@@ -8,6 +8,7 @@ import SearchBar from "../../SearchBar/SearchBar";
 const Navbar=({userInfo, onSearchNote ,handleClearSearch})=>{
 
     const [seachQuery,setSearchQuery]=useState("");
+    
     const navigate=useNavigate();
 
     const onLogout=()=>{
@@ -38,9 +39,10 @@ const Navbar=({userInfo, onSearchNote ,handleClearSearch})=>{
                 handleSearch={handleSearch}
                 onClearSearch={onClearSearch}
                 />
+            <ProfileInfo userInfo={userInfo} onLogout={onLogout}></ProfileInfo>
                 
-                <ProfileInfo userInfo={userInfo} onLogout={onLogout}></ProfileInfo>
             </div>
+
         </>
     )
 }
